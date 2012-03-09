@@ -1,0 +1,13 @@
+mSD-Shield
+-------------
+microSD+RTC+LCD Shield for Arduino
+http://www.watterott.com/en/Arduino-mSD-Shield
+http://www.watterott.com/en/Arduino-Mega-mSD-Shield
+
+
+More information in the wiki: https://github.com/watterott/mSD-Shield/wiki
+
+
+Directories:
+ /pcb - Schematics and Layout files
+ /src - Arduino Library and Examples
