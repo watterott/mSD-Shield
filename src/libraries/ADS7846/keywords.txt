@@ -1,0 +1,30 @@
+#######################################
+# Syntax Coloring Map For ADS7846
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+ADS7846	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+init	KEYWORD2
+setOrientation	KEYWORD2
+setCalibration	KEYWORD2
+writeCalibration	KEYWORD2
+readCalibration	KEYWORD2
+calibrate	KEYWORD2
+getX	KEYWORD2
+getY	KEYWORD2
+getXraw	KEYWORD2
+getYraw	KEYWORD2
+getPressure	KEYWORD2
+service	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################

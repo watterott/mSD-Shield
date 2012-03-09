@@ -1,0 +1,656 @@
+<html>
+<head>
+  <title>mSD-Shield for Arduino</title>
+  <style type="text/css">
+    h1
+      { font-size:135%; font-weight:bold; text-shadow:1px 1px 1px #DDDDDD; }
+    h2
+      { font-size:120%; font-weight:bold; text-shadow:1px 1px 1px #DDDDDD; }
+    h3
+      { font-size:110%; font-weight:bold; }
+    h4
+      { font-size:105%; font-weight:normal; }
+    dl dt
+      { font-size:102%; font-weight:normal; font-family:monospace; background:#F0F0F0;}
+    dl dd
+      { font-size:100%; font-weight:normal; }
+    a
+      { text-decoration:none; }
+    a:active, a:hover, a:focus
+      { text-decoration:underline; }
+  </style>
+</head>
+<body>
+<h1>mSD-Shield for Arduino</h1>
+<ul>
+  <li>Further infos: <a href="readme.txt">readme.txt</a></li>
+  <li>License: <a href="license.txt">license.txt</a></li>
+  <li><a href="#Libraries">Arduino Libraries</a></li>
+</ul>
+Touch Library from Manfred Fuchs: <a href="http://www.mafu-foto.de/elektronik/arduino/98-touch-library-fuer-arduino-und-watterott-mi0283qt-2-display">TouchLib</a><br>
+<br>
+French description and additional functions: <a href="http://www.mon-club-elec.fr/pmwiki_reference_arduino/pmwiki.php?n=Main.LibrairieMI0283QT2Afficheur">Librairie mSD-Shield</a><br>
+
+
+<br><hr><br>
+
+
+<a name="Libraries"></a>
+<h2>Libraries</h2>
+<ul>
+  <li><a href="#SDcard">SDcard</a></li>
+  <li><a href="#DS1307">DS1307</a></li>
+  <li><a href="#MI0283QT2">MI0283QT2</a></li>
+  <li><a href="#ADS7846">ADS7846</a></li>
+</ul>
+
+
+<br><br>
+<a name="SDcard"></a>
+<h3>SDcard</h3>
+<blockquote>
+  <dl>
+    <dt>
+      void init(uint8_t clock_div)<br>
+    </dt>
+    <dd>
+      Initialize the microcontroller peripherals.<br>
+      <i>clock_div</i> - SPI clock divider: 2, 4, 8, 16, 32 (SPI clock = Main clock / clock_div)<br>
+    </dd>
+  </dl>
+
+  <dl>
+    <dt>
+      void service(void)<br>
+    </dt>
+    <dd>
+      Service routine. This function has to be called every 10 milliseconds (100 Hz).<br>
+    </dd>
+  </dl>
+
+  <dl>
+    <dt>
+      uint8_t mount(void)<br>
+    </dt>
+    <dd>
+      Initialize the memory card and mount it. The return value is 0 if the mounting failed, otherwise it is mounted successfully.<br>
+    </dd>
+  </dl>
+
+  <dl>
+    <dt>
+      void unmount(void)<br>
+    </dt>
+    <dd>
+      Unmount the memory card.<br>
+    </dd>
+  </dl>
+
+  See also the FatFS Docu, for more information about the file system functions (f_open(), f_read(), f_write()...):<br>
+  <a href="./libraries/SDcard/doc/00index_e.html">/libraries/SDcard/doc/00index_e.html</a> or <a href="http://elm-chan.org/fsw/ff/00index_e.html">ELM-Chan FatFs website</a><br>
+  <br> 
+  To enable LFN support (long file names) set <b>_USE_LFN</b> to <b>1</b> in <a href="./libraries/SDcard/ffconf.h">/libraries/SDcard/ffconf.h</a>. The <i>Demo2</i> has also LFN support.
+</blockquote>
+
+
+<br><br>
+<a name="DS1307"></a>
+<h3>DS1307</h3>
+<blockquote>
+  <dl>
+    <dt>
+      void start(void)<br>
+    </dt>
+    <dd>
+      Start RTC.<br>
+    </dd>
+  </dl>
+
+  <dl>
+    <dt>
+      void stop(void)<br>
+    </dt>
+    <dd>
+      Stop RTC.<br>
+    </dd>
+  </dl>
+
+  <dl>
+    <dt>
+      void get(uint8_t *sec, uint8_t *min, uint8_t *hour, uint8_t *day, uint8_t *month, uint16_t *year)<br>
+    </dt>
+    <dd>
+      Get time and date from RTC.<br>
+      <i>sec</i> - Second (pointer)<br>
+      <i>min</i> - Minute (pointer)<br>
+      <i>hour</i> - Hour (pointer)<br>
+      <i>day</i> - Day (pointer)<br>
+      <i>month</i> - Month (pointer)<br>
+      <i>year</i> - Year (pointer)<br>
+    </dd>
+  </dl>
+
+  <dl>
+    <dt>
+      void set(uint8_t sec, uint8_t min, uint8_t hour, uint8_t day, uint8_t month, uint16_t year)<br>
+    </dt>
+    <dd>
+      Set time and date to RTC.<br>
+      <i>sec</i> - Second<br>
+      <i>min</i> - Minute<br>
+      <i>hour</i> - Hour<br>
+      <i>day</i> - Day<br>
+      <i>month</i> - Month<br>
+      <i>year</i> - Year<br>
+    </dd>
+  </dl>
+</blockquote>
+
+
+<br><br>
+<a name="MI0283QT2"></a>
+<h3>MI0283QT2</h3>
+<blockquote>
+  <dl>
+    <dt>
+      void init(uint8_t clock_div)<br>
+    </dt>
+    <dd>
+      Initialize the microcontroller peripherals.<br>
+      <i>clock_div</i> - SPI clock divider: 2, 4, 8, 16, 32 (SPI clock = Main clock / clock_div)<br>
+    </dd>
+  </dl>
+
+  <dl>
+    <dt>
+      void led(uint8_t power)<br>
+    </dt>
+    <dd>
+      Background LED power control.<br>
+      <i>power</i> - Power: 0...100 (0-100%)<br>
+    </dd>
+  </dl>
+
+  <dl>
+    <dt>
+      void setOrientation(uint16_t o)<br>
+    </dt>
+    <dd>
+      Set display orientation.<br>
+      <i>o</i> - Orientation: 0 90 180 270 (0 is default)<br>
+    </dd>
+  </dl>
+
+  <dl>
+    <dt>
+      uint16_t getWidth(void)<br>
+    </dt>
+    <dd>
+      Returns display width. (depends on orientation)<br>
+    </dd>
+  </dl>
+
+  <dl>
+    <dt>
+      uint16_t getHeight(void)<br>
+    </dt>
+    <dd>
+      Returns display height. (depends on orientation)<br>
+    </dd>
+  </dl>
+
+  <dl>
+    <dt>
+      void setArea(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1)<br>
+    </dt>
+    <dd>
+      Set draw area.<br>
+      <i>x0</i> - X position of 1st point (left top)<br>
+      <i>y0</i> - Y position of 1st point (left top)<br>
+      <i>x1</i> - X position of 2nd point (right bottom)<br>
+      <i>y1</i> - Y position of 2nd point (right bottom)<br>
+    </dd>
+  </dl>
+
+  <dl>
+    <dt>
+      void setCursor(uint16_t x, uint16_t y)<br>
+    </dt>
+    <dd>
+      Set cursor.<br>
+      <i>x</i> - X position<br>
+      <i>y</i> - Y position<br>
+    </dd>
+  </dl>
+
+  <dl>
+    <dt>
+      void clear(uint16_t color)<br>
+    </dt>
+    <dd>
+      Clear the complete screen.<br>
+      <i>color</i> - Color<br>
+    </dd>
+  </dl>
+
+  <dl>
+    <dt>
+      void drawStart(void)<br>
+    </dt>
+    <dd>
+      Select display for drawing.<br>
+    </dd>
+  </dl>
+
+  <dl>
+    <dt>
+      void draw(uint16_t color)<br>
+    </dt>
+    <dd>
+      Draw pixel with color.<br>
+      <i>color</i> - Color<br>
+    </dd>
+  </dl>
+
+  <dl>
+    <dt>
+      void drawStop(void)<br>
+    </dt>
+    <dd>
+      Deselect display from drawing.<br>
+    </dd>
+  </dl>
+
+  <dl>
+    <dt>
+      void drawPixel(uint16_t x0, uint16_t y0, uint16_t color)<br>
+    </dt>
+    <dd>
+      Draw pixel with color at position XY.<br>
+      <i>x0</i> - X position<br>
+      <i>y0</i> - Y position<br>
+      <i>color</i> - Color<br>
+    </dd>
+  </dl>
+
+  <dl>
+    <dt>
+      void drawLine(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t color)<br>
+    </dt>
+    <dd>
+      Draw line.<br>
+      <i>x0</i> - X position of 1st point<br>
+      <i>y0</i> - Y position of 1st point<br>
+      <i>x1</i> - X position of 2nd point<br>
+      <i>y1</i> - Y position of 2nd point<br>
+      <i>color</i> - Color<br>
+    </dd>
+  </dl>
+
+  <dl>
+    <dt>
+      void drawRect(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t color)<br>
+    </dt>
+    <dd>
+      Draw rectangle.<br>
+      <i>x0</i> - X position of 1st point<br>
+      <i>y0</i> - Y position of 1st point<br>
+      <i>x1</i> - X position of 2nd point<br>
+      <i>y1</i> - Y position of 2nd point<br>
+      <i>color</i> - Color<br>
+    </dd>
+  </dl>
+
+  <dl>
+    <dt>
+      void fillRect(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t color)<br>
+    </dt>
+    <dd>
+      Draw filled rectangle.<br>
+      <i>x0</i> - X position of 1st point<br>
+      <i>y0</i> - Y position of 1st point<br>
+      <i>x1</i> - X position of 2nd point<br>
+      <i>y1</i> - Y position of 2nd point<br>
+      <i>color</i> - Color<br>
+    </dd>
+  </dl>
+
+  <dl>
+    <dt>
+      void drawCircle(uint16_t x0, uint16_t y0, uint16_t radius, uint16_t color)<br>
+    </dt>
+    <dd>
+      Draw a circle.<br>
+      <i>x0</i> - X position of middle point<br>
+      <i>y0</i> - Y position of middle point<br>
+      <i>radius</i> - Radius<br>
+      <i>color</i> - Color<br>
+    </dd>
+  </dl>
+
+  <dl>
+    <dt>
+      void fillCircle(uint16_t x0, uint16_t y0, uint16_t radius, uint16_t color)<br>
+    </dt>
+    <dd>
+      Draw filled circle.<br>
+      <i>x0</i> - X position of middle point<br>
+      <i>y0</i> - Y position of middle point<br>
+      <i>radius</i> - Radius<br>
+      <i>color</i> - Color<br>
+    </dd>
+  </dl>
+
+  <dl>
+    <dt>
+      uint16_t drawChar(uint16_t x, uint16_t y, char c, uint8_t size, uint16_t color, uint16_t bg_color)<br>
+    </dt>
+    <dd>
+      Draw single character from RAM, returns the X end position of the character.<br>
+      <i>x</i> - X position (left top)<br>
+      <i>y</i> - Y position (left top)<br>
+      <i>c</i> - Character (RAM)<br>
+      <i>size</i> - Font size scale-up (1=normal size, 2=double size...)<br>
+      <i>color</i> - Font color<br>
+      <i>bg_color</i> - Background color<br>
+    </dd>
+  </dl>
+
+  <dl>
+    <dt>
+      uint16_t drawText(uint16_t x, uint16_t y, text, uint8_t size, uint16_t color, uint16_t bg_color)<br>
+    </dt>
+    <dd>
+      Draw text from RAM, returns the X end position of the text.<br>
+      <i>x</i> - X position (left top)<br>
+      <i>y</i> - Y position (left top)<br>
+      <i>text</i> - String, Integer, Long (RAM)<br>
+      <i>size</i> - Font size scale-up (1=normal size, 2=double size...)<br>
+      <i>color</i> - Font color<br>
+      <i>bg_color</i> - Background color<br>
+    </dd>
+  </dl>
+
+  <dl>
+    <dt>
+      uint16_t drawTextPGM(uint16_t x, uint16_t y, PGM_P s, uint8_t size, uint16_t color, uint16_t bg_color)<br>
+    </dt>
+    <dd>
+      Draw text from Flash (PGM), returns the X end position of the character.<br>
+      <i>x</i> - X position (left top)<br>
+      <i>y</i> - Y position (left top)<br>
+      <i>s</i> - Pointer to string (Flash), example: PSTR("test"), further infos about using flash memory: <a href="http://www.nongnu.org/avr-libc/user-manual/pgmspace.html">Link</a><br>
+      <i>size</i> - Font size scale-up (1=normal size, 2=double size...)<br>
+      <i>color</i> - Font color<br>
+      <i>bg_color</i> - Background color<br>
+    </dd>
+  </dl>
+
+  <dl>
+    <dt>
+      uint16_t drawMLText(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, text, uint8_t size, uint16_t color, uint16_t bg_color)<br>
+    </dt>
+    <dd>
+      Draw multi-line text (line end = "\n") from RAM, returns the X end position of the text.<br>
+      <i>x0</i> - X position of 1st point<br>
+      <i>y0</i> - Y position of 1st point<br>
+      <i>x1</i> - X position of 2nd point<br>
+      <i>y1</i> - Y position of 2nd point<br>
+      <i>text</i> - String (RAM)<br>
+      <i>size</i> - Font size scale-up (1=normal size, 2=double size...)<br>
+      <i>color</i> - Font color<br>
+      <i>bg_color</i> - Background color<br>
+    </dd>
+  </dl>
+
+  <dl>
+    <dt>
+      uint16_t drawMLTextPGM(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, PGM_P s, uint8_t size, uint16_t color, uint16_t bg_color)<br>
+    </dt>
+    <dd>
+      Draw multi-line text (line end = "\n") from Flash (PGM), returns the X end position of the character.<br>
+      <i>x0</i> - X position of 1st point<br>
+      <i>y0</i> - Y position of 1st point<br>
+      <i>x1</i> - X position of 2nd point<br>
+      <i>y1</i> - Y position of 2nd point<br>
+      <i>s</i> - Pointer to string (Flash), example: PSTR("test"), further infos about using flash memory: <a href="http://www.nongnu.org/avr-libc/user-manual/pgmspace.html">Link</a><br>
+      <i>size</i> - Font size scale-up (1=normal size, 2=double size...)<br>
+      <i>color</i> - Font color<br>
+      <i>bg_color</i> - Background color<br>
+    </dd>
+  </dl>
+
+  <dl>
+    <dt>
+      uint16_t drawInteger(uint16_t x, uint16_t y, val, uint8_t base, uint8_t size, uint16_t color, uint16_t bg_color)<br>
+    </dt>
+    <dd>
+      Draw integer, returns the X end position of the text.<br>
+      <i>x</i> - X position (left top)<br>
+      <i>y</i> - Y position (left top)<br>
+      <i>val</i> - Char, Int, Long<br>
+      <i>base</i> - Base (DEC, HEX, OCT, BIN)<br>
+      <i>size</i> - Font size scale-up (1=normal size, 2=double size...)<br>
+      <i>color</i> - Font color<br>
+      <i>bg_color</i> - Background color<br>
+    </dd>
+  </dl>
+
+  <h4><u>Print functions:</u></h4>
+  <blockquote>
+    <dl>
+      <dt>
+        void printOptions(uint8_t size, uint16_t color, uint16_t bg_color)<br>
+      </dt>
+      <dd>
+        Set print options.<br>
+        <i>size</i> - Font size<br>
+        <i>color</i> - Font color<br>
+        <i>bg_color</i> - Background color<br>
+      </dd>
+    </dl>
+
+    <dl>
+      <dt>
+        void printClear(void)<br>
+      </dt>
+      <dd>
+        Clear screen and set print cursor to the upper left corner.<br>
+      </dd>
+    </dl>
+
+    <dl>
+      <dt>
+        void printXY(uint16_t x, uint16_t y)<br>
+      </dt>
+      <dd>
+        Set print cursor.<br>
+        <i>x</i> - X position (left top)<br>
+        <i>y</i> - Y position (left top)<br>
+      </dd>
+    </dl>
+
+    <dl>
+      <dt>
+        uint16_t printGetX(void)<br>
+      </dt>
+      <dd>
+        Returns current X position.<br>
+      </dd>
+    </dl>
+
+    <dl>
+      <dt>
+        uint16_t printGetY(void)<br>
+      </dt>
+      <dd>
+        Returns current Y position.<br>
+      </dd>
+    </dl>
+
+    <dl>
+      <dt>
+        void printPGM(PGM_P s)<br>
+      </dt>
+      <dd>
+        Print text from Flash (PGM)<br>
+        <i>s</i> - Pointer to string (Flash), example: PSTR("test"), further infos about using flash memory: <a href="http://www.nongnu.org/avr-libc/user-manual/pgmspace.html">Link</a><br>
+      </dd>
+    </dl>
+
+    <dl>
+      <dt>
+        void print(text)<br>
+        void print(int, base)<br>
+        void println(text)<br>
+        void println(int, base)<br>
+      </dt>
+      <dd>
+        Print text from RAM.<br>
+        <i>text, int</i> - String, Char, Integer, Long, Float (RAM)<br>
+        <i>base</i> - DEC, HEX, OCT, BIN<br>
+      </dd>
+    </dl>
+
+
+  </blockquote>
+  <p>
+    The text functions can draw characters from 0x20 to 0x7F and the default font is 8x12.<br>
+    To change the font to 8x8 uncomment the <b>FONT_8X8</b> definition and comment the <b>FONT_8X12</b> definition in /libraries/MI0283QT2/fonts.h<br>
+    To support characters from 0x20 to 0xFF comment the <b>FONT_END7F</b> definition in /libraries/MI0283QT2/fonts.h.<br>
+    Use umlaut and special characters as hex values, for example "Test \x84 \x94 \x81 \x8E \x99 \x9A" to display "Test ä ö ü Ä Ö Ü"<br>
+    <i>0x84 = ä</i><br>
+    <i>0x8E = Ä</i><br>
+    <i>0x94 = ö</i><br>
+    <i>0x99 = Ö</i><br>
+    <i>0x81 = ü</i><br>
+    <i>0x9A = Ü</i><br>
+  </p>
+</blockquote>
+
+
+<br><br>
+<a name="ADS7846"></a>
+<h3>ADS7846</h3>
+<blockquote>
+  <dl>
+    <dt>
+      void init(void)<br>
+    </dt>
+    <dd>
+      Initialize the microcontroller peripherals.<br>
+    </dd>
+  </dl>
+
+  <dl>
+    <dt>
+      void setOrientation(uint16_t o)<br>
+    </dt>
+    <dd>
+      Set display orientation.
+      <i>o</i> - Orientation: 0 90 180 270 (0 is default)<br>
+    </dd>
+  </dl>
+
+  <dl>
+    <dt>
+      uint8_t setCalibration(CAL_POINT *lcd, CAL_POINT *tp)<br>
+    </dt>
+    <dd>
+      Set touch panel calibration points. Returns 0 on an error.
+      <i>lcd</i> - Point coordinates from the display screen<br>
+      <i>tp</i> - Point coordinates from the touch panel (ADS7846)<br>
+    </dd>
+  </dl>
+
+  <dl>
+    <dt>
+      uint8_t writeCalibration(unsigned int eeprom_addr)<br>
+    </dt>
+    <dd>
+      Write calibration data to EEPROM. Returns 0 on an error.<br>
+      <i>eeprom_addr</i> - EEPROM address for writing<br>
+    </dd>
+  </dl>
+
+  <dl>
+    <dt>
+      uint8_t readCalibration(unsigned int eeprom_addr)<br>
+    </dt>
+    <dd>
+      Read calibration data from EEPROM. Returns 0 on an error.<br>
+      <i>eeprom_addr</i> - EEPROM address for reading<br>
+    </dd>
+  </dl>
+
+  <dl>
+    <dt>
+      uint8_t doCalibration(MI0283QT2 *lcd, uint16_t eeprom_addr, uint8_t check_eeprom)<br>
+    </dt>
+    <dd>
+      Do touch panel calibration. Returns 0 if the calibration data was read from EEPROM.<br>
+      <i>lcd</i> - Pointer to display class<br>
+      <i>eeprom_addr</i> - EEPROM address for reading<br>
+      <i>check_eeprom</i> - Check EEPROM for calibration data<br>
+    </dd>
+  </dl>
+
+  <dl>
+    <dt>
+      uint16_t getX(void)<br>
+    </dt>
+    <dd>
+      Returns last X position.<br>
+    </dd>
+  </dl>
+
+  <dl>
+    <dt>
+      uint16_t getY(void)<br>
+    </dt>
+    <dd>
+      Returns last Y position.<br>
+    </dd>
+  </dl>
+
+  <dl>
+    <dt>
+      uint16_t getXraw(void)<br>
+    </dt>
+    <dd>
+      Returns last raw X position. (uncalibrated)<br>
+    </dd>
+  </dl>
+
+  <dl>
+    <dt>
+      uint16_t getYraw(void)<br>
+    </dt>
+    <dd>
+      Returns last raw Y position. (uncalibrated)<br>
+    </dd>
+  </dl>
+
+  <dl>
+    <dt>
+      uint8_t getPressure(void)<br>
+    </dt>
+    <dd>
+      Returns actual pressure. (touch pressure)<br>
+    </dd>
+  </dl>
+
+  <dl>
+    <dt>
+      void service(void)<br>
+    </dt>
+    <dd>
+      Service routine. This function should be called in loop().<br>
+    </dd>
+  </dl>
+</blockquote>
+
+
+<br><br>
+</body>
+</html>
