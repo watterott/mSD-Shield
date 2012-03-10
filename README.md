@@ -1,7 +1,9 @@
 # mSD-Shield
 The mSD-Shield is a plug-on module with microSD socket and optional 2.8" TFT-Display with Touch-Panel for Arduino.
 
-<http://www.watterott.com/en/Arduino-mSD-Shield>, <http://www.watterott.com/en/Arduino-Mega-mSD-Shield>
+<http://www.watterott.com/en/Arduino-mSD-Shield>
+
+<http://www.watterott.com/en/Arduino-Mega-mSD-Shield>
 
 ![mSD-Shield](https://github.com/watterott/mSD-Shield/raw/master/img/msd-shield.jpg)
 
