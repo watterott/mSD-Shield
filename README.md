@@ -5,7 +5,7 @@ http://www.watterott.com/en/Arduino-mSD-Shield
 
 http://www.watterott.com/en/Arduino-Mega-mSD-Shield
 
-[[img/msd-shield.jpg]]
+[[https://github.com/watterott/mSD-Shield/raw/master/img/hw_dia.png]]
 
 
 ## Hardware
@@ -15,7 +15,7 @@ Normal edition: On Mega boards only Software-SPI and no RTC without hardware mod
 
 Mega edition: Uno/Mega adjustment via jumper.
 
-[[img/hw_dia.png]]
+[[https://github.com/watterott/mSD-Shield/raw/master/img/hw_dia.png]]
 
 Normal edition has RTC from >= v1.2 and Mega edition has RTC from >= v1.1
 
