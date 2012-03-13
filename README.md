@@ -11,7 +11,7 @@ The mSD-Shield is a plug-on module with microSD socket and optional 2.8" TFT-Dis
 ## Hardware
 Compatible with Arduino Uno, Duemilanove, Diecimila and Mega.
 
-Normal edition: On Mega boards only Software-SPI and no RTC without hardware modifications).
+Normal edition: On Mega boards only Software-SPI and no RTC without hardware modifications.
 
 Mega edition: Uno/Mega adjustment via jumper.
 
