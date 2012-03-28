@@ -40,7 +40,7 @@ Known issues
 
 Third party software
 --------------------
-  ChaN's FatFs 0.08b
+  ChaN's FatFs
     http://elm-chan.org/fsw/ff/00index_e.html
 
   digitalWriteFast
