@@ -185,6 +185,36 @@ void MI0283QT2::led(uint8_t power)
 
   return;
 }
+void MI0283QT2::standby(bool deep)
+{
+	displayOffFlow();
+	wr_cmd(Power_Control_6     , Power_Control_6_STB);
+	if(deep)
+	{
+		wr_cmd(Display_Mode_Control,Display_Mode_Control_DP_STB_S);
+		wr_cmd(Display_Mode_Control, Display_Mode_Control_DP_STB);
+	}
+	wr_cmd(OSC_Control_2, ~OSC_Control_2_OSC_EN);
+}
+
+void MI0283QT2::wakeup(bool deep)
+{
+	wr_cmd(OSC_Control_2, OSC_Control_2_OSC_EN);
+	
+	if(deep)
+	{
+		wr_cmd(Display_Mode_Control,0x0000);
+		_delay_ms(20);
+		wr_cmd(Display_Mode_Control, 0x0000);
+	}
+	else
+	{
+		_delay_ms(5);
+	}
+
+	wr_cmd(Power_Control_6, 0x00D0);
+	displayOnFlow();
+}
 
 
 void MI0283QT2::setOrientation(uint16_t o)
