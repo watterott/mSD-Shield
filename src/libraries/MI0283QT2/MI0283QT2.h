@@ -127,6 +127,8 @@ class MI0283QT2 : public Print
     void wr_data(uint16_t data);
     void wr_spi(uint8_t data);
     void delay_10ms(uint8_t ms);
+    void displayOnFlow(void);
+    void displayOffFlow(void);
 };
 
 
