@@ -1218,7 +1218,18 @@ size_t MI0283QT2::write(const uint8_t *s, size_t size)
 
 
 //-------------------- Private --------------------
-
+void MI0283QT2::displayOnFlow(void)
+{
+  wr_cmd(Display_Control_3, 0x0038);
+  _delay_ms(4);
+  wr_cmd(Display_Control_3, 0x003C);
+}
+void MI0283QT2::displayOffFlow(void)
+{
+  wr_cmd(Display_Control_3, Display_Control_3_GON | Display_Control_3_DTE | Display_Control_3_D1);
+  _delay_ms(4);
+  wr_cmd(Display_Control_3, Display_Control_3_D0);
+}
 
 void MI0283QT2::reset(void)
 {
