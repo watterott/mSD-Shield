@@ -36,6 +36,29 @@ extern "C" {
 # define BIN (2)
 #endif
 
+#define Display_Mode_Control 0x01
+#define OSC_Control_1        0x18
+#define OSC_Control_2        0x19
+#define Power_Control_1      0x1A
+#define Power_Control_2   	 0x1B
+#define Power_Control_3  	 0x1C
+#define Power_Control_4  	 0x1D
+#define Power_Control_5  	 0x1E
+#define Power_Control_6  	 0x1F
+#define Display_Control_1	 0x26
+#define Display_Control_2	 0x27
+#define Display_Control_3	 0x28
+
+
+#define OSC_Control_2_OSC_EN  		  0x01
+#define Display_Control_3_GON		  0x20
+#define Display_Control_3_DTE		  0x10
+#define Display_Control_3_D0		  0x04
+#define Display_Control_3_D1  		  0x08
+#define Power_Control_6_STB   		  0x01
+#define Display_Mode_Control_DP_STB_S 0x40
+#define Display_Mode_Control_DP_STB   0x80
+
 
 class MI0283QT2 : public Print
 {
@@ -46,6 +69,8 @@ class MI0283QT2 : public Print
     MI0283QT2();
     void init(uint8_t clock_div); //2 4 8 16 32
     void led(uint8_t power); //0-100
+    void standby(bool deep);
+	  void wakeup(bool deep);
 
     void setOrientation(uint16_t o); //0 90 180 270
     uint16_t getWidth(void);
