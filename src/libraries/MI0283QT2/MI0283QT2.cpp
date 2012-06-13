@@ -473,7 +473,7 @@ void MI0283QT2::fillRect(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uin
       draw(color); //7
       draw(color); //8
     }
-    for(i=size-tmp; i!=0; i--)
+    for(i=size%8; i!=0; i--)
     {
       draw(color);
     }
