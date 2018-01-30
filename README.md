@@ -12,8 +12,3 @@ The mSD-Shield is a plug-on module with microSD socket, RTC (real time clock) wi
 
 ## Shop
 * [mSD-Shield](http://www.watterott.com/en/mSD-Shield-v2-Data-Logging-Shield)
-
-
-## Hardware and Software
-* [Schematics + Layout](https://github.com/watterott/mSD-Shield/tree/master/hardware)
-* [Arduino Library and Examples](https://github.com/watterott/Arduino-Libs)
