@@ -8,4 +8,5 @@ The mSD-Shield is a plug-on module with microSD socket, RTC (real time clock) wi
 * On-board 3.3V voltage regulator
 * Optional MI0283QT-Adapter (2.8" 320x240 Display with Touch-Panel)
 * Prototyping Area
-* **[Documentation on learn.watterott.com](http://learn.watterott.com/msd-shield/)**
+* Open-Source and released under the [Creative Commons Attribution Share-Alike License](https://creativecommons.org/licenses/by-sa/4.0/).
+* **[Documentation on learn.watterott.com](https://learn.watterott.com)**
